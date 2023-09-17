@@ -10,7 +10,7 @@ const config = {
   page_scripts: true,
   gui_options: {
     consent_modal: {
-      layout: 'bar', // box,cloud,bar
+      layout: 'bar', 
       position: 'bottom right', // bottom,middle,top + left,right,center
       transition: 'slide', // zoom,slide
     },
