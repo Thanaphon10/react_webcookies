@@ -8,6 +8,7 @@ import CookieConsent from './components/CookieConsent'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
 

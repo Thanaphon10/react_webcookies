@@ -1,6 +1,5 @@
 .navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #333;
@@ -9,6 +8,8 @@
   
   .logo {
     font-size: 24px;
+    margin-right: 75%;
+
   }
   
   nav {
@@ -23,4 +24,17 @@
   
   a:hover {
     text-decoration: underline;
+  }
+
+  .btn-light {
+    background-color: rgb(255, 255, 255);
+    width: 70px;
+    height: 30px;
+    justify-content: right;
+  }
+  .btn-lang {
+    background-color: rgb(255, 255, 255);
+    width: 50px;
+    height: 30px;
+    justify-content: right;
   }
