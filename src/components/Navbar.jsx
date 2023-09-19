@@ -30,8 +30,7 @@ const Navbar = () => {
       </nav> */}
       <ButtonGroup aria-label="Switch Lang">
         <Button className='btn-lang' onClick={() => {
-          i18n.changeLanguage('th')
-        }}>
+          i18n.changeLanguage('th')      }}>
           {t('lang_th')}
         </Button>
         <Button className='btn-lang' onClick={() => {
