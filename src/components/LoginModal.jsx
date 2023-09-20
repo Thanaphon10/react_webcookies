@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../style/LoginModal.css';
-import { Button } from 'react-bootstrap';
+import '../assets/css/LoginModal.css';
+import { Button , Modal } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 
 const LoginModal = ({ setIsModalOpen , handleLoginSuccess}) => {
