@@ -1,18 +1,19 @@
+import { Route, Routes } from "react-router-dom";
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import './cc.css'
-
+import Navbar from "./components/Navbar";
 import CookieConsent from './components/CookieConsent'
 import Test from './components/test'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
+
     <div className="App">
-      <Test/>
-      <CookieConsent />
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
@@ -33,6 +34,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p> */}
+
+      <Navbar />
+      <Test/>
+      <CookieConsent />
+     
     </div>
   )
 }
