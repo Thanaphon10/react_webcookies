@@ -22,7 +22,7 @@ function Test() {
 
         // เรียกฟังก์ชันเพื่อรับ IP Address เมื่อคอมโพเนนต์ถูกโหลด
         getIpAddress();
-
+        
         // อ่าน User Agent และอัปเดต state
         setUserAgent(navigator.userAgent);
     }, []);
