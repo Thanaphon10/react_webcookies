@@ -2740,7 +2740,7 @@ react-bootstrap@^2.8.0:
 
 react-cookie@^6.1.1:
   version "6.1.1"
-  resolved "https://registry.npmjs.org/react-cookie/-/react-cookie-6.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-cookie/-/react-cookie-6.1.1.tgz#af61c82ea7f41119d3cf8fd3534f8b6c0408f350"
   integrity sha512-fuFRpf8LH6SfmVMowDUIRywJF5jAUDUWrm0EI5VdXfTl5bPcJ7B0zWbuYpT0Tvikx7Gs18MlvAT+P+744dUz2g==
   dependencies:
     "@types/hoist-non-react-statics" "^3.3.1"

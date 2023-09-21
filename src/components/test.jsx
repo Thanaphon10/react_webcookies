@@ -45,7 +45,7 @@ function Test() {
 
     return (
         <div>
-            <input
+            {/* <input
                 type="text"
                 onChange={(e) => setTest(e.target.value)}>
             </input>
@@ -53,8 +53,8 @@ function Test() {
                 type="submit"
                 onClick={addTodo}>
                 Submit
-            </button>
-
+            </button> */}
+            
             <p>IP Address: {ipAddress}</p> {/* แสดงค่า IP Address */}
             <p>User Agent: {userAgent}</p> {/* แสดงค่า User Agent */}
         </div>
