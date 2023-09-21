@@ -1,10 +1,17 @@
+:root {
+  --navbar-background-dark: black;
+  --navbar-color-dark: white;
+  --navbar-background-light: red; 
+  --navbar-color-light: green; /* เพิ่มสีดำสำหรับธีม light */
+}
+
 .navbar {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-  }
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--navbar-background-dark);
+  color: var(--navbar-color-dark);
+}
   
   .logo {
     font-size: 24px;
@@ -37,4 +44,22 @@
     width: 50px;
     height: 30px;
     justify-content: right;
+  }
+
+  body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  #examples {
+    margin: 20px;
+  }
+  
+  .react-switch {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+  
+  pre {
+    padding: 0 10px;
+    background: #eee;
   }
