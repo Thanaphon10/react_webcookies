@@ -5,7 +5,7 @@ import './App.css'
 import './cc.css'
 import Navbar from "./components/Navbar";
 import CookieConsent from './components/CookieConsent'
-
+import Shop from "./components/Shop";
 function App() {
   const [count, setCount] = useState(0)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,7 +16,7 @@ function App() {
 
       <Navbar />
       <CookieConsent />
-     
+      <Shop/>
     </div>
   )
 }
