@@ -5,6 +5,7 @@ import './App.css'
 import './cc.css'
 import Navbar from "./components/Navbar";
 import CookieConsent from './components/CookieConsent'
+import Shop from "./components/Shop";
 import Test from './components/test'
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
       <Navbar />
       <Test/>
       <CookieConsent />
-     
+      <Shop/>
     </div>
   )
 }

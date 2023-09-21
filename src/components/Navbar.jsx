@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LoginModal from './LoginModal'; // Import the LoginModal component
 import '../assets/css/Navbar.css';
 import { useTranslation } from "react-i18next";
-import { ButtonGroup, Button } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap"; // Import Bootstrap components
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,16 +23,15 @@ const Navbar = () => {
   const renderLoginButton = () => {
     if (isLoggedIn) {
       return (
-        <Button className='btn-block btn-light' onClick={handleLogoutClick}>
+        <Button variant="primary" onClick={handleLogoutClick}>
           {t('Logout')}
         </Button>
       );
     } else {
       return (
-        <Button className='btn-block btn-light' onClick={handleLoginClick}>
-          {t('Login')}
-          
-        </Button>
+        <Button variant="primary" onClick={handleLoginClick}>
+        {t('Login')}
+      </Button>
       );
     }
   };
