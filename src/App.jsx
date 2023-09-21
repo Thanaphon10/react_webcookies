@@ -6,6 +6,8 @@ import './cc.css'
 import Navbar from "./components/Navbar";
 import CookieConsent from './components/CookieConsent'
 import Test from './components/test'
+import ButtonChange from './components/ButtonChange'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,10 +37,13 @@ function App() {
         Click on the Vite and React logos to learn more
       </p> */}
 
+      
+      
       <Navbar />
       <Test/>
       <CookieConsent />
-     
+      <ButtonChange/>
+    
     </div>
   )
 }
