@@ -6,7 +6,6 @@ import './cc.css'
 import Navbar from "./components/Navbar";
 import CookieConsent from './components/CookieConsent'
 import Shop from "./components/Shop";
-import Test from './components/test'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +15,6 @@ function App() {
 
     <div className="App">
       <Navbar />
-      <Test/>
       <CookieConsent />
       <Shop/>
     </div>

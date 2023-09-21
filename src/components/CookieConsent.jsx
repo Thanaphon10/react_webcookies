@@ -115,9 +115,9 @@ export default function CookieConsent() {
     cc.run(config)
   }, [])
 
-  return (
-    <button type="button" data-cc="c-settings">
-      Show cookie settings
-    </button>
-  )
+  // return (
+  //   <button type="button" data-cc="c-settings">
+  //     Show cookie settings
+  //   </button>
+  // )
 }
