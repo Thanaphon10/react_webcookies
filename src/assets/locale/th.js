@@ -16,6 +16,7 @@ let th = {
     "Remove":"นำออก",
     "Add":"เพิ่มลงตะกร้า",
     "productN":"ชื่อสินค้า",
+    "Theme":"เปิดโหมดธีมดำ"
   }
 }
 export default th;

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useCookies } from 'react-cookie';
 
 const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { t } = useTranslation(['home']);
+  const [cookies, setCookie] = useCookies(['user']);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -15,10 +17,12 @@ const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
     event.preventDefault();
 
     // Check if username and password are correct
-    if (username !== 'abc' || password !== '123') {
+    if (!username.trim || !password.trim) {
       // Display alert for incorrect input
       alert(t('wrong'));
     } else {
+      setCookie('Name', username, { path: '/' });
+      setCookie('Password', password, { path: '/' });
       // Handle login success
       handleLoginSuccess();
       handleCloseModal(); // Close the modal
@@ -53,6 +57,7 @@ const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
           <Button variant="primary" type="submit" className="mt-3">
             {t('Submit')}
           </Button>
+          
         </Form>
       </Modal.Body>
     </Modal>
