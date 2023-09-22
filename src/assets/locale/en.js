@@ -16,7 +16,7 @@ let en = {
     "Quantity":"Quantity",
     "Remove":"Remove",
     "Add":"Add to cart",
-
+    "Theme":"OpenDarkMode"
   }
 }
 export default en;

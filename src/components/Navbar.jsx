@@ -87,7 +87,7 @@ const Navbar = () => {
       <div className={`app ${isDarkMode ? "dark" : "light"}`}>
         <main>
           <label>
-            เปิดโหมดธีมดำ
+            {t("Theme")}
             <Switch onChange={toggleDarkMode} checked={isDarkMode} />
             <p>{cookies.theme}</p>
           </label>
