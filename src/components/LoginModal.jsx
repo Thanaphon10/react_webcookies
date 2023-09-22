@@ -1,81 +1,67 @@
 import React, { useState } from 'react';
-import '../assets/css/LoginModal.css';
-import { Button , Modal } from 'react-bootstrap';
-import { useTranslation } from "react-i18next";
+import { Button, Modal, Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useCookies } from 'react-cookie';
 
-const LoginModal = ({ setIsModalOpen , handleLoginSuccess}) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const { t, i18n } = useTranslation(["home"]);
+const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const { t } = useTranslation(['home']);
+  const [cookies, setCookie] = useCookies(['user']);
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
+    // Check if username and password are correct
+    if (!username.trim || !password.trim) {
+      // Display alert for incorrect input
+      alert(t('wrong'));
+    } else {
+      setCookie('Name', username, { path: '/' });
+      setCookie('Password', password, { path: '/' });
+      // Handle login success
+      handleLoginSuccess();
+      handleCloseModal(); // Close the modal
+    }
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        // Check if username and password are correct
-        if (username !== 'abc' || password !== '123') {
-            // Display alertDialog for incorrect input
-            alert(t('wrong'));
-            return;  // Prevent further execution
-        } else {
-            handleLoginSuccess();
-        }
-
-        // Handle login logic for correct input
-        // ...
-    };
-
-    return (
-        <div className="modal">
-            <div className="modal-content">
-                <span className="close" onClick={handleCloseModal}>
-                    &times;
-                </span>
-                <h2>{t('Login')}</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group mb-3">
-                        <label htmlFor="username">{t('username')} : </label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={handleUsernameChange}
-                            placeholder="Enter your username"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">{t('password')} : </label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={handlePasswordChange}
-                            placeholder="Enter your password"
-                        />
-                    </div>
-                    <Button
-                        type="submit"
-                        className="btn btn-blue w-50"
-                    >
-                        {t('Submit')}
-
-                    </Button>
-
-                </form>
-            </div>
-        </div>
-    );
+  return (
+    <Modal show={true} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>{t('Login')}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="username">
+            <Form.Label>{t('username')}</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder={t('Entername')}
+            />
+          </Form.Group>
+          <Form.Group controlId="password">
+            <Form.Label>{t('password')}</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={t('Entepass')}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" className="mt-3">
+            {t('Submit')}
+          </Button>
+          
+        </Form>
+      </Modal.Body>
+    </Modal>
+  );
 };
 
 export default LoginModal;
