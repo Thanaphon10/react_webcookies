@@ -17,7 +17,7 @@ const config = {
     settings_modal: {
       layout: 'bar', // box,bar
       position: 'left', // right,left (available only if bar layout selected)
-      transition: 'slide', // zoom,slide
+      transition: 'slide', // zoom,slide test
     },
   },
   languages: {
