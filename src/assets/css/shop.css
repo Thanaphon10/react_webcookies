@@ -1,0 +1,23 @@
+.card-prices {
+    display: flex;
+    align-items: center;
+}
+
+.card-price {
+    margin: 0;
+    /* Adjust margins as needed */
+}
+
+.sale {
+    margin: 0;
+    padding-left: 10px;
+    color: #D40303;
+    /* Adjust the spacing between price and sale */
+}
+
+.strike-through {
+    text-decoration: line-through;
+    display: inline-block;
+    position: relative;
+}
+

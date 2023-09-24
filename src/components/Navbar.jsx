@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import LoginModal from "./LoginModal"; // Import the LoginModal component
 import "../assets/css/Navbar.css";
 import { useTranslation } from "react-i18next";
-import { Button, ButtonGroup } from "react-bootstrap"; // Import Bootstrap components
+import { Button, ButtonGroup, Dropdown } from "react-bootstrap"; // Import Bootstrap components
 import { useCookies } from "react-cookie";
 import SetCookiesData from "./SetCookiesData";
 import Switch from "react-switch";
+import sut from "../assets/images/SUTFARM.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +17,7 @@ const Navbar = () => {
   const { t, i18n } = useTranslation(["home"]);
   const [cookies, setCookie, removeCookie] = useCookies(["user", "theme"]);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     if (cookies.Name) {
@@ -57,16 +61,30 @@ const Navbar = () => {
     renderLoginButton();
   };
 
+  const handleSearch = (event) => {
+    setSearchText(event.target.value);
+    // Implement your filtering or searching logic here using the searchText
+    // For example, you can filter a list of items based on the searchText.
+  };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      // Trigger your search logic here when Enter is pressed
+      console.log('Searching for:', searchText);
+      // Add your logic to perform the search based on searchText
+    }
+  };
+
+
   const renderLoginButton = () => {
     if (isLoggedIn) {
       return (
-        <Button variant="primary" onClick={handleLogoutClick}>
+        <Button className="btn btn-dark" onClick={handleLogoutClick}>
           {t("Logout")}
         </Button>
       );
     } else {
       return (
-        <Button variant="primary" onClick={handleLoginClick}>
+        <Button className="btn btn-dark" onClick={handleLoginClick}>
           {t("Login")}
         </Button>
       );
@@ -82,40 +100,51 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <div className="h3">{t("MyWebsite")}</div>
-
-      <div className={`app ${isDarkMode ? "dark" : "light"}`}>
-        <main>
-          <label>
-            {t("Theme")}
-            <Switch onChange={toggleDarkMode} checked={isDarkMode} />
-            <p>{cookies.theme}</p>
-          </label>
-        </main>
+      <img src={sut} alt="logo"
+        style={{ width: "120px", height: "50px", marginLeft: "100px" }}
+      />
+       <input
+        type="text"
+        className="search-box"
+        placeholder={t("Search")}
+        value={searchText}
+        onChange={handleSearch}
+      />
+      <div className={`app ${isDarkMode ? "dark" : "light"}`} style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ marginRight: '0.5rem' }}>{t("Theme")}</span> {/* Adjust the margin here */}
+        <Switch onChange={toggleDarkMode} checked={isDarkMode} />
+        <span style={{ marginLeft: '0.5rem' }}>{cookies.theme}</span> {/* Adjust the margin here */}
       </div>
+
       <div>
-        <ButtonGroup aria-label="Switch Lang">
-          <Button
-            className="btn-block btn-light"
-            onClick={() => {
-              i18n.changeLanguage("th");
-              setCookie("language", i18n.language, { path: "/" });
-            }}
-            disabled={i18n.language === "th"}
-          >
-            {t("lang_th")}
-          </Button>
-          <Button
-            className="btn-block btn-light"
-            onClick={() => {
-              i18n.changeLanguage("en");
-              setCookie("language", i18n.language, { path: "/" });
-            }}
-            disabled={i18n.language === "en"}
-          >
-            {t("lang_en")}
-          </Button>
-        </ButtonGroup>
+        <Dropdown style={{ display: 'flex', alignItems: 'center' }}>
+          <Dropdown.Toggle className="btn-light" id="dropdown-lang" >
+            <FontAwesomeIcon icon={faGlobe} />
+            <span style={{ marginRight: '0.5rem', marginLeft: '0.5rem' }}>
+              {i18n.language === 'th' ? t('lang_th') : t('lang_en')}
+            </span>
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => {
+                i18n.changeLanguage('th');
+                setCookie('language', 'th', { path: '/' });
+              }}
+              disabled={i18n.language === 'th'}
+            >
+              {t('lang_th')}
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                i18n.changeLanguage('en');
+                setCookie('language', 'en', { path: '/' });
+              }}
+              disabled={i18n.language === 'en'}
+            >
+              {t('lang_en')}
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
       <div>{renderLoginButton()}</div>
       {isModalOpen && (
@@ -124,7 +153,7 @@ const Navbar = () => {
           handleLoginSuccess={handleLoginSuccess}
         />
       )}
-      <br/>
+      <br />
       {data && <SetCookiesData open={isLoggedIn} />}
     </div>
   );
