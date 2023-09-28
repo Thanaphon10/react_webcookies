@@ -1,7 +1,7 @@
 let en = {
   home: {
     "MyWebsite": "My Website",
-    "Login": "Login",
+    "Login": "LOGIN",
     "Logout": "Logout",
     "lang_en": "English",
     "lang_th": "Thai",
@@ -16,7 +16,11 @@ let en = {
     "Quantity":"Quantity",
     "Remove":"Remove",
     "Add":"Add to cart",
-    "Theme":"OpenDarkMode"
+    "Theme":"OpenDarkMode",
+    "Nu":"Number",
+    "Search":"Search...",
+
+
   }
 }
 export default en;

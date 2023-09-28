@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import pro2 from "../assets/images/product-2.png";
-import pro1 from "../assets/images/product-1.png";
-import pro3 from "../assets/images/product-3.png";
+import pro2 from "../assets/images/glass.png";
+import pro1 from "../assets/images/ice.png";
+import pro3 from "../assets/images/egg.png";
+import pro4 from "../assets/images/cookies.png";
 import { useTranslation } from "react-i18next";
 import { useCookies } from "react-cookie";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import "../assets/css/shop.css";
 
 const Shop = () => {
   const [cart, setCart] = useState([]);
@@ -13,24 +15,39 @@ const Shop = () => {
   const [products, setProducts] = useState([
     {
       id: 1,
-      name: "Product 1",
+      name: "Ice Cream (Taro)",
       url: pro1,
       cart: false,
       quantity: 1,
+      price: 0.7 + "$",
+      sale: 0.9 + "$",
     },
     {
       id: 2,
-      name: "Product 2",
+      name: "morning glory",
       url: pro2,
       cart: false,
       quantity: 1,
+      price: 0.3 + "$",
+      sale: 0.5 + "$",
     },
     {
       id: 3,
-      name: "Product 3",
+      name: "Eggs",
       url: pro3,
       cart: false,
       quantity: 1,
+      price: 15 + "$",
+      sale: 17 + "$",
+    },
+    {
+      id: 4,
+      name: "Cookies",
+      url: pro4,
+      cart: false,
+      quantity: 1,
+      price: 0.7 + "$",
+      sale: 0.9 + "$",
     },
   ]);
 
@@ -87,17 +104,18 @@ const Shop = () => {
   // ฟังก์ชันสำหรับบันทึกข้อมูล state cart ลงใน Firestore
   const saveCartToFirestore = async () => {
     try {
-        const docRef = await addDoc(collection(db, cookies.Name), {
-            Cart: cart
-        });
-        console.log("Test ID ", docRef.id);
-      } catch (e) {
-        console.error("error adding document: ", e);
-      }
+      const docRef = await addDoc(collection(db, cookies.Name), {
+        Cart: cart
+      });
+      console.log("Test ID ", docRef.id);
+    } catch (e) {
+      console.error("error adding document: ", e);
+    }
   };
 
   return (
     <div className="container mt-2">
+      <h3 className="mt-5 mb-4 text-center"><strong>RECOMMENDED FOR YOU</strong></h3>
       <div className="row justify-content-center">
         {products.map((item) => (
           <div className="col-3" key={item.id}>
@@ -108,16 +126,25 @@ const Shop = () => {
                 style={{ width: "100%", height: "290px" }}
               />
               <div className="card-body">
-                <h6 className="card-title">{item.name}</h6>
+                <h5 style={{ color: "#D40303" }}><strong>Sale!</strong></h5>
+                <h4 className="card-title">{item.name}</h4>
+                <div className="card-prices">
+                  <h5 className="card-price"><strong>{item.price}</strong></h5>
+                  <h6 className="sale">
+                    <span className="strike-through">{item.sale}</span>
+                  </h6>
+                </div>
+
+
                 {item.cart === false ? (
                   <button
-                    className="btn btn-primary"
+                    className="btn btn btn-dark mt-3 "
                     onClick={() => addtocart(item)}
                   >
                     {t("Add")}
                   </button>
                 ) : (
-                  <button className="btn btn-primary" disabled>
+                  <button className="btn btn btn-dark mt-3" disabled>
                     {t("Add")}
                   </button>
                 )}
@@ -135,37 +162,44 @@ const Shop = () => {
       </div>
 
       <div className="row mt-3">
-        <table className="table  text-center">
-          <thead>
+        <h3 className="mt-5 mb-4 text-center"><strong>MY CART</strong></h3>
+        <table className="table text-center table-hover table-striped">
+          <thead  className="table-dark">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">{t("product")}</th>
-              <th scope="col">{t("productN")}</th>
-              <th scope="col">{t("Quantity")}</th>
-              <th scope="col">{t("Remove")}</th>
+              <th scope="col"><strong style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>{t("Nu")}</strong></th>
+              <th scope="col"><strong style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>{t("product")}</strong></th>
+              <th scope="col"><strong style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>{t("productN")}</strong></th>
+              <th scope="col"><strong style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>{t("Quantity")}</strong></th>
+              <th scope="col"><strong style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>{t("Remove")}</strong></th>
             </tr>
           </thead>
           <tbody>
             {cart.map((i, index) => (
               <tr key={i.id}>
-                <th scope="row">{index + 1}</th>
-                <th scope="row">
-                  <img src={i.url} style={{ width: "4rem" }} />
+                <th scope="row" >
+                  <span style={{ fontSize: "1.3rem", margin: "0 0.5rem" }}>{index + 1}</span>
                 </th>
-                <td>{i.name}</td>
+                <th scope="row">
+                  <img src={i.url} style={{ width: "7rem" }} />
+                </th>
+                <td>
+                  <span style={{ fontSize: "1.3rem", margin: "0 0.5rem" }}>
+                    {i.name}
+                  </span>
+                </td>
                 <td>
                   <button
                     onClick={() => decrease(i)}
-                    className="btn btn-primary btn-sm"
+                    className="btn btn-dark btn-sm"
                   >
                     -
                   </button>
-                  <span style={{ fontSize: "1rem", margin: "0 0.5rem" }}>
+                  <span style={{ fontSize: "1.2rem", margin: "0 0.5rem" }}>
                     {i.quantity}
                   </span>
                   <button
                     onClick={() => increase(i)}
-                    className="btn btn-primary btn-sm "
+                    className="btn btn-dark btn-sm "
                     size="sm"
                   >
                     +
@@ -187,9 +221,9 @@ const Shop = () => {
       </div>
       <div className="text-center">
         {cookies.Name &&
-        <button className="btn btn-primary" onClick={saveCartToFirestore}>
-          บันทึกข้อมูล
-        </button>
+          <button className="btn btn-primary" onClick={saveCartToFirestore}>
+            บันทึกข้อมูล
+          </button>
         }
       </div>
     </div>

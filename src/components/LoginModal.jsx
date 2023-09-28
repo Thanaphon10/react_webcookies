@@ -31,12 +31,10 @@ const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
 
   return (
     <Modal show={true} onHide={handleCloseModal}>
-      <Modal.Header closeButton>
-        <Modal.Title>{t('Login')}</Modal.Title>
-      </Modal.Header>
+      <Modal.Title className='text-center mt-3 '>{t('Login')}</Modal.Title>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="username">
+          <Form.Group controlId="username" className='mt-3'>
             <Form.Label>{t('username')}</Form.Label>
             <Form.Control
               type="text"
@@ -45,7 +43,7 @@ const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
               placeholder={t('Entername')}
             />
           </Form.Group>
-          <Form.Group controlId="password">
+          <Form.Group controlId="password" className='mt-3'>
             <Form.Label>{t('password')}</Form.Label>
             <Form.Control
               type="password"
@@ -54,10 +52,13 @@ const LoginModal = ({ setIsModalOpen, handleLoginSuccess }) => {
               placeholder={t('Entepass')}
             />
           </Form.Group>
-          <Button variant="primary" type="submit" className="mt-3">
-            {t('Submit')}
-          </Button>
-          
+          <div className="text-center mt-4"> {/* Center the button */}
+            <Button variant="primary" type="submit" className="btn btn-dark">
+              {t('Login')}
+            </Button>
+          </div>
+
+
         </Form>
       </Modal.Body>
     </Modal>
